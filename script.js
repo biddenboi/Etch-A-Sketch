@@ -11,10 +11,21 @@ function startingBoard() {
 
     board.appendChild(title);
     board.appendChild(startButton);
+
+
+    startButton.addEventListener("click", () => {
+        board.classList.toggle("gameplayBoard");
+        board.classList.toggle("startingBoard");
+        title.remove();
+        startButton.remove();
+        gameplayBoard();
+    })
 }
 
 function gameplayBoard() {
-
+    
 }
+
+
 
 startingBoard();

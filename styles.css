@@ -20,6 +20,7 @@ body {
     width:30%;
     height:30%;
     border-radius:7px;
+    transition: all .7s; 
 }
 
 button {
@@ -45,11 +46,15 @@ button:hover {
     align-items:center;
     justify-content:center;
     gap:11%;
-    transition: all .7s; 
 }
 
 .startingBoard:hover {
     width:32%;
     height:32%;
-    font-size:30px;  
+    font-size:28px;  
 }
+
+.gameplayBoard {
+    width:100%;
+    height:100%;
+}   
