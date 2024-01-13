@@ -7,7 +7,7 @@ function startingBoard() {
     title.textContent = "Etch A Sketch.";
     startButton.textContent = "Begin?";
 
-    
+    board.classList.toggle("startingBoard");
 
     board.appendChild(title);
     board.appendChild(startButton);
@@ -17,3 +17,4 @@ function gameplayBoard() {
 
 }
 
+startingBoard();
