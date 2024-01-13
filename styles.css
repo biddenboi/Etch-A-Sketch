@@ -55,6 +55,20 @@ button:hover {
 }
 
 .gameplayBoard {
+    display:flex;
     width:100%;
     height:100%;
 }   
+
+.boardRow {
+    display:flex;
+    flex-direction: column;
+    flex:1;
+    border: 1px solid red;
+}
+
+.boardSquare {
+    flex: 1;
+    border: 1px solid black;
+}
+
