@@ -40,7 +40,7 @@ function gameplayBoard(width, height) {
 
     const squares = document.querySelectorAll(".boardSquare");
     squares.forEach((square) => 
-        square.addEventListener("mouseover", () => {
+        square.addEventListener("mousedown", () => {
             square.classList.toggle("activeSquare");
         }))
 
