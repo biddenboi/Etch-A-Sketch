@@ -1,4 +1,5 @@
 const board = document.querySelector(".board");
+const body = document.querySelector("body");
 
 function startingBoard() {
     const title = document.createElement("h1");
@@ -18,23 +19,31 @@ function startingBoard() {
         board.classList.toggle("startingBoard");
         title.remove();
         startButton.remove();
-        gameplayBoard(15, 15);
+        gameplayBoard(100, 100);
     })
 }
 
 function gameplayBoard(width, height) {
+    const row = document.createElement("div");
+    row.classList.toggle("boardRow");
+
+    const square = document.createElement("div");
+    square.classList.toggle("boardSquare");
+
+    for (let i = 0; i < height; i++) {
+        row.appendChild(square.cloneNode(true));
+    }
 
     for (let i = 0; i < width; i++) {
-        const row = document.createElement("div");
-        row.classList.toggle("boardRow");
-
-        for (let j = 0; j < height; j++) {
-            const square = document.createElement("div");
-            square.classList.toggle("boardSquare");
-            row.appendChild(square);
-        }
-        board.appendChild(row);
+        board.appendChild(row.cloneNode(true));
     }
+
+    const squares = document.querySelectorAll(".boardSquare");
+    squares.forEach((square) => 
+        square.addEventListener("mouseover", () => {
+            square.classList.toggle("activeSquare");
+        }))
+
 }
 
 
