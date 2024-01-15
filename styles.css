@@ -4,8 +4,26 @@
     margin:0px;
 }
 
+html, body {
+    width:100%;
+    height:100%;
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.content {
+    display:flex;
+    align-items: center;    
+    gap:20px;
+}
+
 h1 {
-    font-size:50px;
+    font-size:90px;
 }
 
 .settingsMenu {
@@ -14,6 +32,28 @@ h1 {
 }
 
 button {
-    width:125px;
-    height:125px;
+    width:110px;
+    height:110px;
+}
+
+.board {
+    background-color: red;
+    width: 510px;
+    height: 460px;
+}
+
+.scale {
+    background-color: black;
+    width: 250px;
+    height: 30px;
+}
+
+.boardArea {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-around;
+    border:5px solid black;
+    width:550px;
+    height:550px;
 }
