@@ -14,6 +14,7 @@ body {
     flex-direction: column;
     align-items:center;
     justify-content: center;
+    background-color:#F6E8EA;
 }
 
 .content {
@@ -23,29 +24,50 @@ body {
 }
 
 h1 {
+    color:#39393A;
     font-size:90px;
 }
 
 .settingsMenu {
     display:flex;
     flex-direction: column;
+    align-items:center;
+    gap:10px;
+    min-width:110px;
 }
 
 button {
+    width:100px;
+    height:100px;
+    border-radius:7.5px;
+    background-color: #DED6D1;
+    border: 3px solid #39393a80;
+    transition: all .3s;
+}
+
+
+/**to be changed ^*/
+button:hover {
     width:110px;
     height:110px;
+    border: 4px solid #39393aa3;
 }
 
 .board {
-    background-color: red;
+    background-color: #F2F2F2;
     width: 510px;
     height: 460px;
+    border-radius:15px;
+    border: 3px solid #39393a80;
 }
 
 .scale {
-    background-color: black;
-    width: 250px;
-    height: 30px;
+    background-color: #F2F2F2;
+    border: 3px solid #39393a80;
+    border-radius:30px;
+    width: 300px;
+    height: 10px;
+    margin-bottom:15px;
 }
 
 .boardArea {
@@ -53,7 +75,9 @@ button {
     flex-direction: column;
     align-items:center;
     justify-content: space-around;
-    border:5px solid black;
+    border:4px solid #39393a80;
     width:550px;
     height:550px;
+    border-radius:10px;
+    background-color:#E76D83;
 }
