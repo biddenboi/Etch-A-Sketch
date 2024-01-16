@@ -60,6 +60,14 @@ button:hover {
     color:#39393ae8;
 }
 
+.toggledButton {
+    width:110px;
+    height:110px;
+    border: 4px solid #39393aa3;
+    font-size:70px;
+    color:#39393ae8;
+}
+
 .board {
     background-color: #F2F2F2;
     width: 460px;

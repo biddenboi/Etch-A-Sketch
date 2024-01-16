@@ -3,8 +3,7 @@ const optionsMenu = document.querySelector(".optionsMenu");
 const sizeSlider = document.querySelector(".scale");
 
 
-
-function generateBoard(pixels) {
+function createNewBoard(pixels) {
     while (board.firstChild) board.removeChild(board.firstChild);
 
     for (let i = 0; i < pixels; i++) {
@@ -19,6 +18,9 @@ function generateBoard(pixels) {
                 if (isMouseDown) {
                     boardCol.style.backgroundColor = "red";
                 }
+            })
+            boardCol.addEventListener("click", () => {
+                boardCol.style.backgroundColor = "red";
             })
         }
         board.appendChild(boardRow);
@@ -37,8 +39,17 @@ function generateBoard(pixels) {
 }
 
 //usage
-generateBoard(50);
+createNewBoard(50);
 
 sizeSlider.addEventListener('mouseup', () => {
-    generateBoard(sizeSlider.value);
+    createNewBoard(sizeSlider.value);
 });
+
+const buttons = optionsMenu.childNodes;
+
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        
+    })
+})
