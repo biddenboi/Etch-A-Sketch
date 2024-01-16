@@ -3,36 +3,36 @@ const optionsMenu = document.querySelector(".optionsMenu");
 const sizeSlider = document.querySelector(".scale");
 
 
-function createNewBoard(pixels) {
+function createNewBoard(dimensions) {
     while (board.firstChild) board.removeChild(board.firstChild);
 
-    for (let i = 0; i < pixels; i++) {
+    for (let i = 0; i < dimensions; i++) {
         const boardRow = document.createElement("div");
         boardRow.classList.add("boardRow");
 
-        for (let j = 0; j < pixels; j++) {
-            const boardCol = document.createElement("div");
-            boardCol.classList.add("boardCol");
-            boardRow.appendChild(boardCol);
-            boardCol.addEventListener("mouseenter", () => {
+        for (let j = 0; j < dimensions; j++) {
+            const pixel = document.createElement("div");
+            pixel.classList.add("pixel");
+            boardRow.appendChild(pixel);
+            pixel.addEventListener("mouseenter", () => {
                 if (isMouseDown) {
-                    boardCol.style.backgroundColor = "red";
+                    pixel.style.backgroundColor = "red";
                 }
             })
-            boardCol.addEventListener("click", () => {
-                boardCol.style.backgroundColor = "red";
+            pixel.addEventListener("click", () => {
+                pixel.style.backgroundColor = "red";
             })
         }
         board.appendChild(boardRow);
     }
     let isMouseDown = false;
 
-    const boardCols = document.querySelectorAll(".boardCol");
-    boardCols.forEach((boardCol) => {
-        boardCol.addEventListener("mousedown", () => {
+    const pixels = document.querySelectorAll(".pixel");
+    pixels.forEach((pixel) => {
+        pixel.addEventListener("mousedown", () => {
             isMouseDown = true;
         })
-        boardCol.addEventListener("mouseup", () => {
+        pixel.addEventListener("mouseup", () => {
             isMouseDown = false;
         })
     })
