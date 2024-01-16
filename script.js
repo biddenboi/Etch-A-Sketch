@@ -2,25 +2,31 @@ const board = document.querySelector(".board");
 const optionsMenu = document.querySelector(".optionsMenu");
 const sizeSlider = document.querySelector(".scale");
 
-
-function togglePaint() {
-const paintPixel = (pixel) => {paint(pixel, 0);};
-
-    const pixels = document.querySelectorAll(".boardCol");
-    pixels.forEach((pixel) => {
-        pixel.addEventListener("mouseenter", () => paintPixel(pixel));
+function checkValid(element) {
+    let isMouseDown = false;
+    let isMouseEntered = false;
+    element.addEventListener("mouseenter", () => {
+        isMouseEntered = true;
+        checkValidHelper();
     })
-    pixels.forEach((pixel) => {
-        pixel.addEventListener("mouseup", () => {
-            pixels.forEach((pixel) => {
-                pixel.removeEventListener("mouseenter", () => paintPixel(pixel));
-            })
-        })
+    element.addEventListener("mouseleave", () => {
+        isMouseEntered = false;
+        checkValidHelper();
     })
-}
+    element.addEventListener("mouseup", () => {
+        isMouseDown = false;
+        checkValidHelper();
+    })
+    element.addEventListener("mousedown", () => {
+        isMouseDown = true;
+        checkValidHelper();
+    })
 
-function paint(target, type) {
-    target.style.backgroundColor = "red";
+    function checkValidHelper() {
+        if (isMouseDown && isMouseEntered) {
+            element.style.backgroundColor = "red";
+        }
+    }
 }
 
 function generateBoard(pixels) {
@@ -34,14 +40,17 @@ function generateBoard(pixels) {
             const boardCol = document.createElement("div");
             boardCol.classList.add("boardCol");
             boardRow.appendChild(boardCol);
-            boardCol.addEventListener("mousedown", () => togglePaint());
+            checkValid(boardCol);
         }
         board.appendChild(boardRow);
     }
 }
 
+
+//usage
+generateBoard(50);
+
 sizeSlider.addEventListener('mouseup', () => {
     generateBoard(sizeSlider.value);
 });
-
 
