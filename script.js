@@ -2,32 +2,7 @@ const board = document.querySelector(".board");
 const optionsMenu = document.querySelector(".optionsMenu");
 const sizeSlider = document.querySelector(".scale");
 
-function checkValid(element) {
-    let isMouseDown = false;
-    let isMouseEntered = false;
-    element.addEventListener("mouseenter", () => {
-        isMouseEntered = true;
-        checkValidHelper();
-    })
-    element.addEventListener("mouseleave", () => {
-        isMouseEntered = false;
-        checkValidHelper();
-    })
-    element.addEventListener("mouseup", () => {
-        isMouseDown = false;
-        checkValidHelper();
-    })
-    element.addEventListener("mousedown", () => {
-        isMouseDown = true;
-        checkValidHelper();
-    })
 
-    function checkValidHelper() {
-        if (isMouseDown && isMouseEntered) {
-            element.style.backgroundColor = "red";
-        }
-    }
-}
 
 function generateBoard(pixels) {
     while (board.firstChild) board.removeChild(board.firstChild);
@@ -40,12 +15,26 @@ function generateBoard(pixels) {
             const boardCol = document.createElement("div");
             boardCol.classList.add("boardCol");
             boardRow.appendChild(boardCol);
-            checkValid(boardCol);
+            boardCol.addEventListener("mouseenter", () => {
+                if (isMouseDown) {
+                    boardCol.style.backgroundColor = "red";
+                }
+            })
         }
         board.appendChild(boardRow);
     }
-}
+    let isMouseDown = false;
 
+    const boardCols = document.querySelectorAll(".boardCol");
+    boardCols.forEach((boardCol) => {
+        boardCol.addEventListener("mousedown", () => {
+            isMouseDown = true;
+        })
+        boardCol.addEventListener("mouseup", () => {
+            isMouseDown = false;
+        })
+    })
+}
 
 //usage
 generateBoard(50);
@@ -53,4 +42,3 @@ generateBoard(50);
 sizeSlider.addEventListener('mouseup', () => {
     generateBoard(sizeSlider.value);
 });
-
