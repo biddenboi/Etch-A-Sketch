@@ -3,9 +3,12 @@ const toolsMenu = document.querySelector(".toolsMenu");
 const sizeSlider = document.querySelector(".scale");
 const buttons = Array.from(toolsMenu.children);
 
+let boardSize = 50;
 let clickAction;
 
 function changeCurrentTool(newTool) {
+    let currentColor = "red";
+
     buttons.forEach((button) => {
         button.classList.remove("toggledButton");
     })
@@ -15,15 +18,18 @@ function changeCurrentTool(newTool) {
 
     }else if (newTool.className === "paintBrush") {
         clickAction = (pixel) => {
-            pixel.style.backgroundColor = "red";
+            pixel.style.backgroundColor = currentColor;
         }
     }else if (newTool.className === "rainbowBrush") {
         clickAction = (pixel) => {
-            
+            const red = Math.floor(Math.random() * 256);
+            const green = Math.floor(Math.random() * 256);
+            const blue = Math.floor(Math.random() * 256);
+            pixel.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
         }
     }else if (newTool.className === "fillTool") {
         clickAction = (pixel) => {
-            
+            pixel.style.backgroundColor = currentColor;
         }
     }else if (newTool.className === "eraser") {
         clickAction = () => {
@@ -58,8 +64,11 @@ function setupPaintEventListeners() {
 }
 
 function createNewBoard(dimensions) {
+
+    boardSize = dimensions;
     while (board.firstChild) board.removeChild(board.firstChild);
 
+    let pixelNum = 0;
     for (let i = 0; i < dimensions; i++) {
         const boardRow = document.createElement("div");
         boardRow.classList.add("boardRow");
@@ -67,6 +76,7 @@ function createNewBoard(dimensions) {
         for (let j = 0; j < dimensions; j++) {
             const pixel = document.createElement("div");
             pixel.classList.add("pixel");
+            pixel.setAttribute("id", ++pixelNum);
             boardRow.appendChild(pixel);
             
         }
