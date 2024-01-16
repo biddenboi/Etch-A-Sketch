@@ -30,7 +30,7 @@ function changeCurrentTool(newTool) {
     }else if (newTool.className === "fillTool") {
         clickAction = (pixel) => {
             function getPixelofID(pixelID) {
-                return document.querySelector(`${pixelID}`);
+                return document.querySelector(`#pixel-${pixelID}`);
             }
     
             function checkValidFill(pixelID) {
@@ -42,7 +42,19 @@ function changeCurrentTool(newTool) {
 
             pixel.style.backgroundColor = currentColor;
             
-            if (checkValidFill(pixel.id + 50)) clickAction();
+            //left right
+            if (checkValidFill(pixel.id + boardSize)) clickAction(getPixelofID(pixel.id + boardSize));
+            if (checkValidFill(pixel.id - boardSize)) clickAction(getPixelofID(pixel.id - boardSize));
+
+            //top bottom
+            if (checkValidFill(pixel.id + 1)) clickAction(getPixelofID(pixel.id + 1));
+            if (checkValidFill(pixel.id - 1)) clickAction(getPixelofID(pixel.id - 1));
+
+            //edges
+            if (checkValidFill(pixel.id + boardSize + 1)) clickAction(getPixelofID(pixel.id + boardSize + 1));
+            if (checkValidFill(pixel.id - boardSize + 1)) clickAction(getPixelofID(pixel.id - boardSize + 1));
+            if (checkValidFill(pixel.id + boardSize - 1)) clickAction(getPixelofID(pixel.id + boardSize - 1));
+            if (checkValidFill(pixel.id - boardSize - 1)) clickAction(getPixelofID(pixel.id - boardSize - 1));
         }
     }else if (newTool.className === "eraser") {
         clickAction = () => {
@@ -89,7 +101,7 @@ function createNewBoard(dimensions) {
         for (let j = 0; j < dimensions; j++) {
             const pixel = document.createElement("div");
             pixel.classList.add("pixel");
-            pixel.setAttribute("id", ++pixelNum);
+            pixel.setAttribute("id", `pixel-${++pixelNum}`);
             boardRow.appendChild(pixel);
             
         }
