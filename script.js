@@ -1,21 +1,27 @@
 const board = document.querySelector(".board");
 const optionsMenu = document.querySelector(".optionsMenu");
 const sizeSlider = document.querySelector(".scale");
+const buttons = Array.from(optionsMenu.children);
 
-function isMouseDown() {
-    let mouseDown = false;
-    
-    pixel.addEventListener("mousedown", () => {
-        mouseDown = true;
-    })
-    pixel.addEventListener("mouseup", () => {
-        mouseDown = false;
-    })
+let currentOption = "paint";
+function checkCurrentOption() {
+
 }
 
-function shouldColorPixel() {
+function colorPixel(pixel) {
+    pixel.style.backgroundColor = color;
+}
+
+function changeCurrentButton(clickedButton) {
+    buttons.forEach((button) => {
+        button.classList.remove("toggledButton");
+    })
+    clickedButton.classList.add("toggledButton");
+}
+
+function setupPaintEventListeners() {
     const pixels = document.querySelectorAll(".pixel");
-    
+    let isMouseDown = false;
 
     pixels.forEach((pixel) => {
         pixel.addEventListener("mouseenter", () => {
@@ -27,10 +33,14 @@ function shouldColorPixel() {
             pixel.style.backgroundColor = "red";
         })
 
-        
+        pixel.addEventListener("mousedown", () => {
+            isMouseDown = true;
+        })
+        pixel.addEventListener("mouseup", () => {
+            isMouseDown = false;
+        })
     })
 }
-
 
 function createNewBoard(dimensions) {
     while (board.firstChild) board.removeChild(board.firstChild);
@@ -47,7 +57,7 @@ function createNewBoard(dimensions) {
         }
         board.appendChild(boardRow);
     }
-    shouldColorPixel();
+    setupPaintEventListeners();
 }
 
 //usage
@@ -57,11 +67,8 @@ sizeSlider.addEventListener('mouseup', () => {
     createNewBoard(sizeSlider.value);
 });
 
-const buttons = optionsMenu.childNodes;
 
-
-buttons.forEach((button) => {
+buttons.forEach((button) => 
     button.addEventListener("click", () => {
-        
-    })
-})
+        changeCurrentButton(button);
+}))
