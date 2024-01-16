@@ -28,18 +28,17 @@ function changeCurrentTool(newTool) {
             pixel.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
         }
     }else if (newTool.className === "fillTool") {
-        function getPixelofID(pixelID) {
-            return document.querySelector(`${pixelID}`);
-        }
-
-        function checkValidFill(pixelID) {
-            const pixel = getPixelofID(pixelID);
-            if (pixel !== undefined && pixel.style.backgroundColor === undefined) {//maybe change this
-                return true;
-            }
-        }
-
         clickAction = (pixel) => {
+            function getPixelofID(pixelID) {
+                return document.querySelector(`${pixelID}`);
+            }
+    
+            function checkValidFill(pixelID) {
+                const pixel = getPixelofID(pixelID);
+                if (pixel !== undefined && pixel.style.backgroundColor === undefined) {//maybe change this
+                    return true;
+                }
+            }
 
             pixel.style.backgroundColor = currentColor;
             
