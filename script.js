@@ -3,25 +3,35 @@ const toolsMenu = document.querySelector(".toolsMenu");
 const sizeSlider = document.querySelector(".scale");
 const buttons = Array.from(toolsMenu.children);
 
-let color = "paint";
+let clickAction;
 
-function useBrush(pixel) {
-    
-}
-
-//registers corresponding effect of each tool
-function useTool(pixel) {
-    pixel.style.backgroundColor = color;
-}
-
-//changes selected button in css
-function changeCurrentTool(clickedButton) {
+function changeCurrentTool(newTool) {
     buttons.forEach((button) => {
         button.classList.remove("toggledButton");
     })
-    clickedButton.classList.add("toggledButton");
-    currentTool = clickedButton.className;
-}
+    
+
+    if (newTool.className === "pickerWheel") {
+
+    }else if (newTool.className === "paintBrush") {
+        clickAction = (pixel) => {
+            pixel.style.backgroundColor = "red";
+        }
+    }else if (newTool.className === "rainbowBrush") {
+        clickAction = (pixel) => {
+            
+        }
+    }else if (newTool.className === "fillTool") {
+        clickAction = (pixel) => {
+            
+        }
+    }else if (newTool.className === "eraser") {
+        clickAction = () => {
+            
+        }
+    }
+    newTool.classList.add("toggledButton");
+}   
 
 //registers when to paint
 function setupPaintEventListeners() {
@@ -31,11 +41,11 @@ function setupPaintEventListeners() {
     pixels.forEach((pixel) => {
         pixel.addEventListener("mouseenter", () => {
             if (isMouseDown) {
-                colorPixel(pixel);
+                clickAction(pixel);
             }
         })
         pixel.addEventListener("click", () => {
-            colorPixel(pixel);
+            clickAction(pixel);
         })
 
         pixel.addEventListener("mousedown", () => {
