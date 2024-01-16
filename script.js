@@ -4,16 +4,10 @@ const sizeSlider = document.querySelector(".scale");
 const buttons = Array.from(toolsMenu.children);
 
 let currentTool = "paint";
-function getCurrentTool() {
 
-}
 
-function colorPixel(pixel) {
+function useTool(pixel) {
     pixel.style.backgroundColor = color;
-}
-
-function getToolFromClass() {
-
 }
 
 function changeCurrentButton(clickedButton) {
