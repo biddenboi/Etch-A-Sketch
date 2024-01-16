@@ -28,8 +28,22 @@ function changeCurrentTool(newTool) {
             pixel.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
         }
     }else if (newTool.className === "fillTool") {
+        function getPixelofID(pixelID) {
+            return document.querySelector(`${pixelID}`);
+        }
+
+        function checkValidFill(pixelID) {
+            const pixel = getPixelofID(pixelID);
+            if (pixel !== undefined && pixel.style.backgroundColor === undefined) {//maybe change this
+                return true;
+            }
+        }
+
         clickAction = (pixel) => {
+
             pixel.style.backgroundColor = currentColor;
+            
+            if (checkValidFill(pixel.id + 50)) clickAction();
         }
     }else if (newTool.className === "eraser") {
         clickAction = () => {
