@@ -36,7 +36,6 @@ function changeCurrentTool(newTool) {
             function checkValidFill(pixelID) {
                 const pixel = getPixelofID(pixelID);
                 if (pixel !== null && pixel.style.backgroundColor === '') {//maybe change this
-                    
                     return true;
                 }
             }
@@ -49,8 +48,8 @@ function changeCurrentTool(newTool) {
             if (checkValidFill(pixelID - boardSize)) clickAction(getPixelofID(pixelID - boardSize));
 
             //top bottom
-            if (checkValidFill(pixelID + 1)) clickAction(getPixelofID(pixelID + 1));
-            if (checkValidFill(pixelID - 1)) clickAction(getPixelofID(pixelID - 1));
+            if (checkValidFill(pixelID + 1) && pixelID % 50 != 0) clickAction(getPixelofID(pixelID + 1));
+            if (checkValidFill(pixelID - 1) && pixelID % 50 != 1) clickAction(getPixelofID(pixelID - 1));
         }
     }else if (newTool.className === "eraser") {
         clickAction = () => {
