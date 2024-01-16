@@ -3,14 +3,19 @@ const toolsMenu = document.querySelector(".toolsMenu");
 const sizeSlider = document.querySelector(".scale");
 const buttons = Array.from(toolsMenu.children);
 
-let currentTool = "paint";
+let color = "paint";
 
+function useBrush(pixel) {
+    
+}
 
+//registers corresponding effect of each tool
 function useTool(pixel) {
     pixel.style.backgroundColor = color;
 }
 
-function changeCurrentButton(clickedButton) {
+//changes selected button in css
+function changeCurrentTool(clickedButton) {
     buttons.forEach((button) => {
         button.classList.remove("toggledButton");
     })
@@ -18,6 +23,7 @@ function changeCurrentButton(clickedButton) {
     currentTool = clickedButton.className;
 }
 
+//registers when to paint
 function setupPaintEventListeners() {
     const pixels = document.querySelectorAll(".pixel");
     let isMouseDown = false;
@@ -25,11 +31,11 @@ function setupPaintEventListeners() {
     pixels.forEach((pixel) => {
         pixel.addEventListener("mouseenter", () => {
             if (isMouseDown) {
-                pixel.style.backgroundColor = "red";
+                colorPixel(pixel);
             }
         })
         pixel.addEventListener("click", () => {
-            pixel.style.backgroundColor = "red";
+            colorPixel(pixel);
         })
 
         pixel.addEventListener("mousedown", () => {
@@ -69,5 +75,5 @@ sizeSlider.addEventListener('mouseup', () => {
 
 buttons.forEach((button) => 
     button.addEventListener("click", () => {
-        changeCurrentButton(button);
+        changeCurrentTool(button);
 }))
