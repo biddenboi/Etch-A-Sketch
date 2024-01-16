@@ -4,7 +4,7 @@ const sizeSlider = document.querySelector(".scale");
 const buttons = Array.from(toolsMenu.children);
 
 let currentTool = "paint";
-function checkCurrentTool() {
+function getCurrentTool() {
 
 }
 
@@ -12,7 +12,7 @@ function colorPixel(pixel) {
     pixel.style.backgroundColor = color;
 }
 
-function identifyToolFromClass() {
+function getToolFromClass() {
 
 }
 
@@ -21,7 +21,7 @@ function changeCurrentButton(clickedButton) {
         button.classList.remove("toggledButton");
     })
     clickedButton.classList.add("toggledButton");
-    currentTool = 
+    currentTool = clickedButton.className;
 }
 
 function setupPaintEventListeners() {
