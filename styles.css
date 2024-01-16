@@ -29,7 +29,7 @@ h1 {
     font-size:85px;
 }
 
-.optionsMenu {
+.toolsMenu {
     display:flex;
     flex-direction: column;
     align-items:center;

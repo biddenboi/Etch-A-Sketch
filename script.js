@@ -1,10 +1,10 @@
 const board = document.querySelector(".board");
-const optionsMenu = document.querySelector(".optionsMenu");
+const toolsMenu = document.querySelector(".toolsMenu");
 const sizeSlider = document.querySelector(".scale");
-const buttons = Array.from(optionsMenu.children);
+const buttons = Array.from(toolsMenu.children);
 
-let currentOption = "paint";
-function checkCurrentOption() {
+let currentTool = "paint";
+function checkCurrentTool() {
 
 }
 
@@ -12,11 +12,16 @@ function colorPixel(pixel) {
     pixel.style.backgroundColor = color;
 }
 
+function identifyToolFromClass() {
+
+}
+
 function changeCurrentButton(clickedButton) {
     buttons.forEach((button) => {
         button.classList.remove("toggledButton");
     })
     clickedButton.classList.add("toggledButton");
+    currentTool = 
 }
 
 function setupPaintEventListeners() {
