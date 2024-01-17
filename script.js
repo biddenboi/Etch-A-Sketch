@@ -33,23 +33,25 @@ function changeCurrentTool(newTool) {
                 return document.querySelector(`#pixel-${pixelID}`);
             }
     
-            function checkValidFill(pixelID) {
-                const pixel = getPixelofID(pixelID);
-                if (pixel !== null && pixel.style.backgroundColor === '') {//maybe change this
-                    return true;
+            function checkValidFill(pixelID, posChange) {
+                const prevPixel = getPixelofID(pixelID+posChange);
+                const pixel = getPixelofID(pixelID+posChange);
+                if (pixel === null || pixel.style.backgroundColor !== '' || prevPixel.parentElement !== pixel.parentElement) {//maybe change this
+                    return false;
                 }
+                return true;
             }
 
             pixel.style.backgroundColor = currentColor;
             const pixelID = parseInt(pixel.id.replace("pixel-", ""));
 
             //left right
-            if (checkValidFill(pixelID + boardSize)) clickAction(getPixelofID(pixelID + boardSize));
-            if (checkValidFill(pixelID - boardSize)) clickAction(getPixelofID(pixelID - boardSize));
+            if (checkValidFill(pixelID, boardSize)) clickAction(getPixelofID(pixelID + boardSize));
+            if (checkValidFill(pixelID, -boardSize)) clickAction(getPixelofID(pixelID - boardSize));
 
             //top bottom
-            if (checkValidFill(pixelID + 1) && pixelID % 50 != 0) clickAction(getPixelofID(pixelID + 1));
-            if (checkValidFill(pixelID - 1) && pixelID % 50 != 1) clickAction(getPixelofID(pixelID - 1));
+            if (checkValidFill(pixelID, 1)) clickAction(getPixelofID(pixelID + 1));
+            if (checkValidFill(pixelID, -1)) clickAction(getPixelofID(pixelID - 1));
         }
     }else if (newTool.className === "eraser") {
         clickAction = () => {
