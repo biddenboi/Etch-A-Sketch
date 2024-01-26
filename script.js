@@ -60,13 +60,11 @@ function changeCurrentTool(newTool) {
                 //top bottom
                 if (checkValidFill(pixelID + 1) && pixel.parentElement === getPixelofID(pixelID+1).parentElement) clickActionHelper(getPixelofID(pixelID + 1));
                 if (checkValidFill(pixelID - 1) && pixel.parentElement === getPixelofID(pixelID+1).parentElement) clickActionHelper(getPixelofID(pixelID - 1));
-
-                
         }
     }
     }else if (newTool.className === "eraser") {
-        clickAction = () => {
-            
+        clickAction = (pixel) => {
+            pixel.style.backgroundColor = "";
         }
     }
     newTool.classList.add("toggledButton");
