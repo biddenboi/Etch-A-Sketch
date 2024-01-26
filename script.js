@@ -46,18 +46,16 @@ function changeCurrentTool(newTool) {
                 }
 
                 const pixelID = parseInt(pixel.id.replace("pixel-", ""));
-                if (checkValidFill(pixelID)) {
-                    pixel.style.backgroundColor = currentColor;
-                }
+                pixel.style.backgroundColor = currentColor;
                 console.log(pixelID);
 
                 //left right
                 if (checkValidFill(pixelID + boardSize)) clickActionHelper(getPixelofID(pixelID + boardSize));
                 if (checkValidFill(pixelID - boardSize)) clickActionHelper(getPixelofID(pixelID - boardSize));
-    
+                
                 //top bottom
-                if (checkValidFill(pixelID + 1)) clickActionHelper(getPixelofID(pixelID + 1));
-                if (checkValidFill(pixelID - 1)) clickActionHelper(getPixelofID(pixelID - 1));
+                if (checkValidFill(pixelID + 1) && pixel.parentElement === getPixelofID(pixelID+1).parentElement) clickActionHelper(getPixelofID(pixelID + 1));
+                if (checkValidFill(pixelID - 1) && pixel.parentElement === getPixelofID(pixelID+1).parentElement) clickActionHelper(getPixelofID(pixelID - 1));
 
                 
         }
