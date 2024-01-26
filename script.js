@@ -2,21 +2,19 @@ const board = document.querySelector(".board");
 const toolsMenu = document.querySelector(".toolsMenu");
 const sizeSlider = document.querySelector(".scale");
 const buttons = Array.from(toolsMenu.children);
+const colorPicker = document.querySelector("#colorPicker");
 
 let boardSize = 50;
 let clickAction;
+let currentColor = "red";
 
 function changeCurrentTool(newTool) {
-    let currentColor = "red";
-
     buttons.forEach((button) => {
         button.classList.remove("toggledButton");
     })
     
 
-    if (newTool.className === "pickerWheel") {
-
-    }else if (newTool.className === "paintBrush") {
+    if (newTool.className === "paintBrush") {
         clickAction = (pixel) => {
             pixel.style.backgroundColor = currentColor;
         }
