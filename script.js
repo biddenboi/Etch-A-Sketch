@@ -124,3 +124,8 @@ buttons.forEach((button) =>
     button.addEventListener("click", () => {
         changeCurrentTool(button);
 }))
+
+colorPicker.addEventListener("input", () => {
+    colorPicker.parentElement.style.backgroundColor = colorPicker.value;
+    currentColor = colorPicker.value;
+});
