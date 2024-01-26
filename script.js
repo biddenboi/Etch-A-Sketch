@@ -17,6 +17,7 @@ function changeCurrentTool(newTool) {
         clickAction = (pixel) => {
             if (pixel.style.backgroundColor === "") return;
             currentColor = pixel.style.backgroundColor;
+            colorPicker.parentElement.style.backgroundColor = currentColor;
         }
     }if (newTool.className === "paintBrush") {
         clickAction = (pixel) => {
