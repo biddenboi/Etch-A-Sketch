@@ -29,32 +29,37 @@ function changeCurrentTool(newTool) {
         }
     }else if (newTool.className === "fillTool") {
         clickAction = (pixel) => {
-            let fillColor = pixel.backgroundColor
+            let initialColor = pixel.style.backgroundColor;
             clickActionHelper(pixel);
 
-            clickActionHelper = (pixel) => {
+            function clickActionHelper(pixel) {
                 function getPixelofID(pixelID) {
                     return document.querySelector(`#pixel-${pixelID}`);
                 }
-                console.log(pixelID);
-                function checkValidFill(pixelID, posChange) {
-                    const prevPixel = getPixelofID(pixelID+posChange);
+                function checkValidFill(pixelID) {
                     const pixel = getPixelofID(pixelID);
-                    if (pixel === null || pixel.style.backgroundColor !== fillColor || prevPixel.parentElement !== pixel.parentElement) {//maybe change this
+                    if (pixel === null || pixel.style.backgroundColor !== initialColor) {
                         return false;
-                    }
+                        }
+                    
                     return true;
                 }
-                pixel.style.backgroundColor = currentColor;
+
                 const pixelID = parseInt(pixel.id.replace("pixel-", ""));
-    
+                if (checkValidFill(pixelID)) {
+                    pixel.style.backgroundColor = currentColor;
+                }
+                console.log(pixelID);
+
                 //left right
-                if (checkValidFill(pixelID, boardSize)) clickActionHelper(getPixelofID(pixelID + boardSize));
-                if (checkValidFill(pixelID, -boardSize)) clickActionHelper(getPixelofID(pixelID - boardSize));
+                if (checkValidFill(pixelID + boardSize)) clickActionHelper(getPixelofID(pixelID + boardSize));
+                if (checkValidFill(pixelID - boardSize)) clickActionHelper(getPixelofID(pixelID - boardSize));
     
                 //top bottom
-                if (checkValidFill(pixelID, 1)) clickActionHelper(getPixelofID(pixelID + 1));
-                if (checkValidFill(pixelID, -1)) clickActionHelper(getPixelofID(pixelID - 1));
+                if (checkValidFill(pixelID + 1)) clickActionHelper(getPixelofID(pixelID + 1));
+                if (checkValidFill(pixelID - 1)) clickActionHelper(getPixelofID(pixelID - 1));
+
+                
         }
     }
     }else if (newTool.className === "eraser") {
@@ -63,7 +68,7 @@ function changeCurrentTool(newTool) {
         }
     }
     newTool.classList.add("toggledButton");
-}   
+}
 
 //registers when to paint
 function setupPaintEventListeners() {
