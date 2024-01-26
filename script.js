@@ -6,7 +6,7 @@ const colorPicker = document.querySelector("#colorPicker");
 
 let boardSize = 50;
 let clickAction;
-let currentColor = "red";
+let currentColor = "black";
 
 function changeCurrentTool(newTool) {
     buttons.forEach((button) => {
