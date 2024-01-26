@@ -13,8 +13,11 @@ function changeCurrentTool(newTool) {
         button.classList.remove("toggledButton");
     })
     
-
-    if (newTool.className === "paintBrush") {
+    if (newTool.className === "colorSelector") {
+        clickAction = (pixel) => {
+            currentColor = pixel.style.backgroundColor;
+        }
+    }if (newTool.className === "paintBrush") {
         clickAction = (pixel) => {
             pixel.style.backgroundColor = currentColor;
         }
